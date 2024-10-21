@@ -1,0 +1,8 @@
+# -*- mode:snippet -*-
+# name: fortrue
+# key: fortrue
+# --
+for {
+  $0
+  break
+}

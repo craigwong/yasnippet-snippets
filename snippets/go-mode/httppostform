@@ -1,0 +1,32 @@
+# -*- mode: snippet -*-
+# name: http post form
+# key: httppostform
+# --
+
+// https://pkg.go.dev/net/http#NewRequest
+req, err := http.NewRequest(http.MethodPost, ${2:url}, bytes.NewBuffer(${3:body}))
+if err != nil {
+   return nil, fmt.Errorf("error creating request: %v", err)
+}
+
+// https://pkg.go.dev/net/http#Header
+req.Header.set(key, value)
+
+// https://pkg.go.dev/net/http#Request.SetBasicAuth
+req.SetBasicAuth(username, password)
+
+// https://pkg.go.dev/net/http#Client
+client := &http.Client{}
+
+// https://pkg.go.dev/net/http#Client.Do
+resp, err := client.Do(req)
+if err != nil {
+   return nil, fmt.Errorf("error making request: %v", err)
+}
+
+// https://pkg.go.dev/net/http#Response
+if resp.StatusCode != 200 || resp.StatusCode != 201 {
+   return nil, fmt.Errorf("non 2xx (%d) response: %s", resp.StatusCode, resp.Status)
+}
+
+defer resp.Body.Close()

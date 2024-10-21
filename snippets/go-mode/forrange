@@ -1,8 +1,7 @@
 # -*- mode: snippet -*-
 # name: for range
 # key: range
-# contributor : @atotto
 # --
-for ${3:key}, ${2:value} := range ${1:target} {
+for ${3:index}, ${2:value} := range ${1:slice} {
 	$0
 }
